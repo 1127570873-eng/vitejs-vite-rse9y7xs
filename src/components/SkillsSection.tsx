@@ -17,7 +17,8 @@ export default function SkillsSection({ data }: Props) {
   const { ref, inView } = useInView();
   const [visibleCount, setVisibleCount] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const allTags = data.skillCategories.flatMap((c) => c.skills);
+  const profile = data.profile;
+  const allTags = profile.skillCategories.flatMap((c) => c.skills);
 
   useEffect(() => {
     if (!inView) return;
@@ -42,7 +43,7 @@ export default function SkillsSection({ data }: Props) {
         <p className="section-subtitle">6年实战积累的核心技术栈</p>
       </div>
       <div className="skills-grid">
-        {data.skillCategories.map((cat, catIdx) => {
+        {profile.skillCategories.map((cat, catIdx) => {
           const accent = catAccents[catIdx % catAccents.length];
           return (
             <div key={cat.name} className="skill-cat-card glass-card">

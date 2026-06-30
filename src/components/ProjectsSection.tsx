@@ -11,6 +11,7 @@ export default function ProjectsSection({ data }: Props) {
   const [expanded, setExpanded] = useState<number | null>(null);
   const { ref, inView } = useInView();
   const [visibleCards, setVisibleCards] = useState(0);
+  const profile = data.profile;
 
   useEffect(() => {
     if (!inView) return;
@@ -18,10 +19,10 @@ export default function ProjectsSection({ data }: Props) {
     const tick = () => {
       count += 1;
       setVisibleCards(count);
-      if (count < data.projects.length) setTimeout(tick, 100);
+      if (count < profile.projects.length) setTimeout(tick, 100);
     };
     setTimeout(tick, 100);
-  }, [inView, data.projects.length]);
+  }, [inView, profile.projects.length]);
 
   return (
     <section
@@ -35,7 +36,7 @@ export default function ProjectsSection({ data }: Props) {
       </div>
 
       <div className="timeline">
-        {data.projects.map((p, idx) => {
+        {profile.projects.map((p, idx) => {
           const isOpen = expanded === idx;
           return (
             <div
@@ -45,7 +46,7 @@ export default function ProjectsSection({ data }: Props) {
             >
               <div className="timeline-track">
                 <div className="timeline-dot" />
-                {idx < data.projects.length - 1 && <div className="timeline-line" />}
+                {idx < profile.projects.length - 1 && <div className="timeline-line" />}
               </div>
 
               <div className={`project-glass-card glass-card ${isOpen ? 'open' : ''}`}>

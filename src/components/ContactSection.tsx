@@ -7,28 +7,30 @@ interface Props {
 }
 
 export default function ContactSection({ data, onCopy }: Props) {
+  const profile = data.profile;
+  const wechatValue = profile.wechat || 'NewQuery';
   const contacts = [
     {
       icon: <MessageCircle size={22} strokeWidth={1.5} />,
       label: '微信',
-      value: data.wechat,
-      action: () => onCopy(data.wechat, '微信号'),
+      value: wechatValue,
+      action: () => onCopy(wechatValue, '微信号'),
       isLink: false,
     },
     {
       icon: <Phone size={22} strokeWidth={1.5} />,
       label: '手机',
-      value: data.phone,
-      action: () => onCopy(data.phone, '手机号'),
-      href: `tel:${data.phone}`,
+      value: profile.phone,
+      action: () => onCopy(profile.phone, '手机号'),
+      href: `tel:${profile.phone}`,
       isLink: true,
     },
     {
       icon: <Mail size={22} strokeWidth={1.5} />,
       label: '邮箱',
-      value: data.email,
-      action: () => onCopy(data.email, '邮箱'),
-      href: `mailto:${data.email}`,
+      value: profile.email,
+      action: () => onCopy(profile.email, '邮箱'),
+      href: `mailto:${profile.email}`,
       isLink: true,
     },
   ];

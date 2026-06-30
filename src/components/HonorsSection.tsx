@@ -20,6 +20,7 @@ const colorMap = {
 
 export default function HonorsSection({ data }: Props) {
   const { ref, inView } = useInView();
+  const profile = data.profile;
 
   return (
     <section
@@ -33,7 +34,7 @@ export default function HonorsSection({ data }: Props) {
       </div>
 
       <div className="honors-grid">
-        {data.honors.map((h, idx) => {
+        {profile.honors.map((h, idx) => {
           const palette = colorMap[h.type];
           return (
             <div

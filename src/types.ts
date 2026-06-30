@@ -19,7 +19,13 @@ export interface Honor {
   year: string;
 }
 
-export interface CardData {
+export interface AvatarInfo {
+  image?: string;
+  initials?: string;
+  alt?: string;
+}
+
+export interface ProfileInfo {
   name: string;
   title: string;
   tagline: string;
@@ -35,4 +41,9 @@ export interface CardData {
   skillCategories: SkillCategory[];
   projects: Project[];
   honors: Honor[];
+}
+
+export interface CardData extends ProfileInfo {
+  avatar: AvatarInfo;
+  profile: ProfileInfo;
 }
